@@ -135,7 +135,7 @@ function Login() {
             <p className="mt-5 max-w-[430px] text-[13px] font-light leading-6 text-white/75 md:text-[14px]">
               Manage your business with a simple,
               <br />
-              powerful and modern POS system.
+              powerful and modern POS mmmmm system.
             </p>
           </div>
         </section>
