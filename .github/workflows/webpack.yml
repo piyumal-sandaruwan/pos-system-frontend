@@ -30,11 +30,12 @@ jobs:
         env:
           VITE_API_URL: ${{ secrets.VITE_API_URL }}
         run: |
-          if [ -z "$VITE_API_URL" ]; then
-            echo "VITE_API_URL secret is missing"
-            exit 1
+          if [ -n "$VITE_API_URL" ]; then
+            printf 'VITE_API_URL=%s\n' "$VITE_API_URL" > .env.production
+          else
+            echo "VITE_API_URL is not configured yet."
+            echo "Building frontend without a backend API URL."
           fi
-          printf 'VITE_API_URL=%s\n' "$VITE_API_URL" > .env.production
 
       - name: Build React Application
         run: npm run build
