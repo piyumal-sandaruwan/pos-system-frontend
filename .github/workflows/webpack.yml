@@ -1,4 +1,4 @@
-name: Deploy React Frontend to EC2
+name: Deploy React POS Frontend to EC2
 
 on:
   push:
@@ -31,7 +31,7 @@ jobs:
           VITE_API_URL: ${{ secrets.VITE_API_URL }}
         run: |
           if [ -z "$VITE_API_URL" ]; then
-            echo "Error: VITE_API_URL secret is not configured."
+            echo "VITE_API_URL secret is missing"
             exit 1
           fi
           printf 'VITE_API_URL=%s\n' "$VITE_API_URL" > .env.production
@@ -39,21 +39,17 @@ jobs:
       - name: Build React Application
         run: npm run build
 
-      - name: Verify Build Output
-        run: |
-          if [ ! -f dist/index.html ]; then
-            echo "Error: dist/index.html was not generated."
-            exit 1
-          fi
+      - name: Verify Build
+        run: test -f dist/index.html
 
-      - name: Deploy Frontend to EC2
+      - name: Deploy POS Frontend
         uses: appleboy/scp-action@v1
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USERNAME }}
           key: ${{ secrets.VPS_SSH_KEY }}
           source: "dist/"
-          target: "/var/www/goopiy.online"
+          target: "/var/www/pos.mytestindevlab.online"
           strip_components: 1
           overwrite: true
           timeout: 60s
