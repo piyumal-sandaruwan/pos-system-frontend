@@ -1,3 +1,4 @@
+
 import {
   Avatar,
   Box,
@@ -16,16 +17,22 @@ import ReceiptLongOutlinedIcon from "@mui/icons-material/ReceiptLongOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-
 import { storage } from "../../utils/storage";
 
 const SIDEBAR_WIDTH = 232;
 
-const Sidebar = () => {
+interface SidebarProps {
+  drawerMode?: boolean;
+}
+
+const Sidebar = ({ drawerMode = false }: SidebarProps) => {
   const location = useLocation();
   const navigate = useNavigate();
 
- 
+  const user = storage.getUser();
+  const fullName = user?.fullName?.trim() || "User";
+  const email = user?.email?.trim() || "";
+  const initial = fullName.charAt(0).toUpperCase() || "U";
 
   const menuItems = [
     {
@@ -52,73 +59,53 @@ const Sidebar = () => {
 
   const handleLogout = () => {
     storage.clearAuth();
-
-    navigate("/", {
-      replace: true,
-    });
+    navigate("/", { replace: true });
   };
 
   return (
     <Box
       sx={{
-        width: SIDEBAR_WIDTH,
-        height: "100vh",
-        position: "fixed",
+        width: drawerMode ? "100%" : SIDEBAR_WIDTH,
+        height: drawerMode ? "calc(100vh - 48px)" : "100vh",
+        position: drawerMode ? "relative" : "fixed",
         left: 0,
         top: 0,
-        bgcolor: "#ffffff",
-        borderRight: "1px solid #e5e7eb",
-        display: {
-          xs: "none",
-          md: "flex",
-        },
+        bgcolor: "#022c22",
+        color: "#ffffff",
+        borderRight: "1px solid #145c46",
+        display: drawerMode ? "flex" : { xs: "none", md: "flex" },
         flexDirection: "column",
         zIndex: 1200,
       }}
     >
-      
       <Box
         sx={{
-          height: 68,
+          minHeight: 84,
           px: 2.5,
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          borderBottom: "1px solid #f1f5f9",
+          borderBottom: "1px solid #145c46",
         }}
       >
-        <Typography
-          sx={{
-            fontSize: 22,
-            fontWeight: 800,
-            color: "#2563eb",
-            lineHeight: 1,
-          }}
-        >
-          POSZ
+        <Typography sx={{ fontSize: 22, fontWeight: 800, color: "#6ee7b7", lineHeight: 1 }}>
+          SHOPZAy
         </Typography>
 
         <Typography
           sx={{
-            fontSize: 8,
+            fontSize: 9,
             fontWeight: 500,
-            letterSpacing: 2,
-            color: "#94a3b8",
-            mt: 0.5,
+            letterSpacing: 1.3,
+            color: "#b6d4c7",
+            mt: 0.7,
           }}
         >
-          POINT OF SALE
+          POINT OF SALE SYSTEM
         </Typography>
       </Box>
 
-   
-      <Box
-        sx={{
-          px: 1.5,
-          pt: 2.5,
-          flex: 1,
-        }}
-      >
+      <Box sx={{ px: 1.5, pt: 2.5, flex: 1 }}>
         <Typography
           sx={{
             px: 1.5,
@@ -126,7 +113,7 @@ const Sidebar = () => {
             fontSize: 9,
             fontWeight: 700,
             letterSpacing: 1.5,
-            color: "#94a3b8",
+            color: "#83aa98",
           }}
         >
           MENU
@@ -134,8 +121,7 @@ const Sidebar = () => {
 
         <List disablePadding>
           {menuItems.map((item) => {
-            const active =
-              location.pathname === item.path;
+            const active = location.pathname === item.path;
 
             return (
               <ListItemButton
@@ -143,31 +129,23 @@ const Sidebar = () => {
                 component={NavLink}
                 to={item.path}
                 sx={{
-                  minHeight: 42,
-                  mb: 0.5,
+                  minHeight: 44,
+                  mb: 0.6,
                   borderRadius: 2,
                   px: 1.3,
-
-                  color: active
-                    ? "#2563eb"
-                    : "#64748b",
-
-                  bgcolor: active
-                    ? "#eff6ff"
-                    : "transparent",
-
+                  color: active ? "#ffffff" : "#c3d9cf",
+                  bgcolor: active ? "#087653" : "transparent",
                   "&:hover": {
-                    bgcolor: "#f8fafc",
-                    color: "#2563eb",
+                    bgcolor: active ? "#087653" : "#064e3b",
+                    color: "#ffffff",
+                  },
+                  "&.active": {
+                    bgcolor: "#087653",
+                    color: "#ffffff",
                   },
                 }}
               >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 30,
-                    color: "inherit",
-                  }}
-                >
+                <ListItemIcon sx={{ minWidth: 34, color: "inherit" }}>
                   {item.icon}
                 </ListItemIcon>
 
@@ -175,8 +153,8 @@ const Sidebar = () => {
                   primary={item.label}
                   sx={{
                     "& .MuiListItemText-primary": {
-                      fontSize: 14,
-                      fontWeight: active ? 600 : 500,
+                      fontSize: 13,
+                      fontWeight: active ? 650 : 500,
                     },
                   }}
                 />
@@ -186,64 +164,49 @@ const Sidebar = () => {
         </List>
       </Box>
 
-    
       <Box>
-        <Divider />
+        <Divider sx={{ borderColor: "#145c46" }} />
 
-        <Box
-          sx={{
-            px: 2,
-            py: 1.8,
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 1.2,
-              mb: 1.5,
-            }}
-          >
+        <Box sx={{ px: 2, py: 1.8 }}>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1.2, mb: 1.5 }}>
             <Avatar
               sx={{
                 width: 38,
                 height: 38,
-                bgcolor: "#2563eb",
+                bgcolor: "#047857",
+                color: "#ffffff",
+                border: "1px solid #34d399",
                 fontSize: 14,
-                fontWeight: 600,
+                fontWeight: 650,
               }}
             >
-              
+              {initial}
             </Avatar>
 
-            <Box
-              sx={{
-                minWidth: 0,
-              }}
-            >
+            <Box sx={{ minWidth: 0 }}>
               <Typography
                 sx={{
-                  fontSize: 13,
-                  fontWeight: 600,
-                  color: "#111827",
+                  fontSize: 12,
+                  fontWeight: 650,
+                  color: "#ffffff",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   whiteSpace: "nowrap",
                 }}
               >
-              
+                {fullName}
               </Typography>
 
               <Typography
                 sx={{
-                  fontSize: 11,
-                  color: "#94a3b8",
+                  fontSize: 10,
+                  color: "#a9c8b9",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   whiteSpace: "nowrap",
                 }}
               >
-                
+                {email || "POS User"}
               </Typography>
             </Box>
           </Box>
@@ -254,20 +217,14 @@ const Sidebar = () => {
               minHeight: 40,
               px: 1,
               borderRadius: 2,
-              color: "#64748b",
-
+              color: "#c3d9cf",
               "&:hover": {
-                bgcolor: "#fef2f2",
-                color: "#dc2626",
+                bgcolor: "#4c1d1d",
+                color: "#fecaca",
               },
             }}
           >
-            <ListItemIcon
-              sx={{
-                minWidth: 30,
-                color: "inherit",
-              }}
-            >
+            <ListItemIcon sx={{ minWidth: 30, color: "inherit" }}>
               <LogoutOutlinedIcon fontSize="small" />
             </ListItemIcon>
 

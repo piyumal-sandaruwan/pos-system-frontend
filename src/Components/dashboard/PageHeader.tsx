@@ -1,3 +1,4 @@
+
 import { Box, Button, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
@@ -18,8 +19,9 @@ const PageHeader = ({
     <Box
       sx={{
         display: "flex",
-        alignItems: "center",
+        alignItems: { xs: "flex-start", sm: "center" },
         justifyContent: "space-between",
+        flexWrap: "wrap",
         gap: 2,
         mb: 3,
       }}
@@ -27,25 +29,16 @@ const PageHeader = ({
       <Box>
         <Typography
           sx={{
-            fontSize: {
-              xs: 21,
-              sm: 24,
-            },
-            fontWeight: 700,
-            color: "#111827",
+            fontSize: { xs: 21, sm: 24 },
+            fontWeight: 750,
+            color: "#102c24",
             lineHeight: 1.2,
           }}
         >
           {title}
         </Typography>
 
-        <Typography
-          sx={{
-            mt: 0.5,
-            fontSize: 13,
-            color: "#9ca3af",
-          }}
-        >
+        <Typography sx={{ mt: 0.6, fontSize: 13, color: "#82938a" }}>
           {subtitle}
         </Typography>
       </Box>
@@ -60,14 +53,11 @@ const PageHeader = ({
           borderRadius: 2,
           textTransform: "none",
           fontSize: 14,
-          fontWeight: 600,
-
-          bgcolor: "#2563eb",
-
+          fontWeight: 650,
+          bgcolor: "#047857",
           boxShadow: "none",
-
           "&:hover": {
-            bgcolor: "#1d4ed8",
+            bgcolor: "#065f46",
             boxShadow: "none",
           },
         }}
