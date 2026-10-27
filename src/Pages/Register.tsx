@@ -96,7 +96,7 @@ function Register() {
 
             <p className="mt-6 max-w-md text-lg leading-8 text-white/75">
               Create your account and simplify everyday retail management
-              with SHOPZAy.
+              with SHOPZA.
             </p>
 
             <div className="mt-10 flex items-center gap-3">
@@ -136,7 +136,7 @@ function Register() {
             </h2>
 
             <p className="mt-3 text-sm leading-6 text-gray-500">
-              Set up your SHOPZAy account to manage your retail business.
+              Set up your SHOPZA account to manage your retail business.
             </p>
           </div>
 
@@ -278,7 +278,7 @@ function Register() {
           </p>
 
           <p className="mt-10 text-center text-xs leading-5 text-gray-400">
-            By creating an account, you agree to use SHOPZAy responsibly and
+            By creating an account, you agree to use SHOPZA responsibly and
             keep your account credentials secure.
           </p>
         </div>

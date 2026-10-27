@@ -89,7 +89,7 @@ const Sidebar = ({ drawerMode = false }: SidebarProps) => {
         }}
       >
         <Typography sx={{ fontSize: 22, fontWeight: 800, color: "#6ee7b7", lineHeight: 1 }}>
-          SHOPZAy
+          SHOPZA
         </Typography>
 
         <Typography

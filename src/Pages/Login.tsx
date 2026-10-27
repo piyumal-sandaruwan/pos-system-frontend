@@ -87,7 +87,7 @@ function Login() {
     try {
       await login(validation.data);
 
-      toast.success("Welcome back to SHOPZAy!");
+      toast.success("Welcome back to SHOPZA!");
       navigate("/dashboard");
     } catch (err) {
       toast.error(getApiErrorMessage(err, "Login failed"));
@@ -196,7 +196,7 @@ function Login() {
               Built for everyday retail.
             </p>
             <p className="text-[11px] font-medium text-white/55">
-              SHOPZAy POS
+              SHOPZA POS
             </p>
           </div>
         </section>
@@ -350,7 +350,7 @@ function Login() {
                   </>
                 ) : (
                   <>
-                    Sign in to SHOPZAy
+                    Sign in to SHOPZA
                     <ArrowRight
                       size={17}
                       className="transition-transform group-hover:translate-x-1"
@@ -363,7 +363,7 @@ function Login() {
             <div className="my-7 flex items-center gap-3">
               <div className="h-px flex-1 bg-[#e2e8e3]" />
               <span className="text-[10px] font-medium uppercase tracking-[1.5px] text-[#a0aaa3]">
-                New to SHOPZAy?
+                New to SHOPZA?
               </span>
               <div className="h-px flex-1 bg-[#e2e8e3]" />
             </div>
@@ -378,7 +378,7 @@ function Login() {
             <p className="mt-8 text-center text-[11px] leading-5 text-[#9aa49d]">
               Simple tools for better retail management.
               <br />
-              © {new Date().getFullYear()} SHOPZAy
+              © {new Date().getFullYear()} SHOPZA
             </p>
           </div>
         </section>
