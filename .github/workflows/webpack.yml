@@ -1,4 +1,4 @@
-name: Deploy React POS Frontend to EC2
+name: Deploy React POS SHOPZA to EC2
 
 on:
   push:
@@ -34,7 +34,7 @@ jobs:
             printf 'VITE_API_URL=%s\n' "$VITE_API_URL" > .env.production
           else
             echo "VITE_API_URL is not configured yet."
-            echo "Building frontend without a backend API URL."
+            echo "Building SHOPZA without a backend API URL."
           fi
 
       - name: Build React Application
@@ -43,7 +43,7 @@ jobs:
       - name: Verify Build
         run: test -f dist/index.html
 
-      - name: Deploy POS Frontend
+      - name: Deploy POS SHOPZA
         uses: appleboy/scp-action@v1
         with:
           host: ${{ secrets.VPS_HOST }}
