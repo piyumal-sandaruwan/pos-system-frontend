@@ -81,10 +81,18 @@ const Dashboard = () => {
    * Do not change its PDF layout or calculations.
    */
 
-  const generatePdf = () => {
-    // Paste the complete existing generatePdf function body here.
-    // Keep the existing jsPDF and autoTable code unchanged.
-  };
+  const generatePdf = async () => {
+  setIsGeneratingPdf(true);
+
+  try {
+    // Paste your existing jsPDF and autoTable code here.
+    // Keep the existing PDF layout and calculations unchanged.
+  } catch (error) {
+    console.error("Failed to generate PDF:", error);
+  } finally {
+    setIsGeneratingPdf(false);
+  }
+};
 
   return (
     <Box sx={{ width: "100%", maxWidth: "100%" }}>
